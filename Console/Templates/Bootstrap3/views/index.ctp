@@ -16,7 +16,7 @@
 ?>
 <div class="<?php echo $pluralVar; ?> index">
 	<h2><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table class="table table-striped">
 	<thead>
 	<tr>
 	<?php foreach ($fields as $field): ?>
@@ -56,14 +56,14 @@
 	?>
 	</tbody>
 	</table>
-	<p>
+	<p class="text-center">
 	<?php echo "<?php
 	echo \$this->Paginator->counter(array(
 	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
 	?>"; ?>
 	</p>
-	<div class="paging">
+	<div class="paging text-center">
 	<?php
 		echo "<?php\n";
 		echo "\t\techo \$this->Paginator->pagination(array('ul' => 'pagination')); \t?>\n";
