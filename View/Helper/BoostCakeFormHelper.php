@@ -72,10 +72,14 @@ class BoostCakeFormHelper extends FormHelper {
 				'tag' => 'div'
 			),
 			'checkboxDiv' => 'checkbox',
-			'beforeInput' => '',
-			'afterInput' => '',
-			'errorClass' => 'has-error error'
+			'beforeInput' => '<div class="col-sm-10">',
+			'afterInput' => '</div>',
+			'errorClass' => 'has-error error',
+                        'label' => array(
+                            'class' => 'col-sm-2 control-label'
+                        )
 		);
+
 
 		if (isset($options['label']) && is_string($options['label'])) {
 			$options['label'] = array(
@@ -116,6 +120,7 @@ class BoostCakeFormHelper extends FormHelper {
 		$this->_inputDefaults = $inputDefaults;
 
 		if ($this->_inputType === 'checkbox') {
+
 			if (isset($options['before'])) {
 				$html = str_replace($options['before'], '%before%', $html);
 			}
@@ -132,8 +137,16 @@ class BoostCakeFormHelper extends FormHelper {
 			if (isset($options['before'])) {
 				$html = str_replace('%before%', $options['before'], $html);
 			}
+                        // Fix the classes
+                        $html = str_replace('form-control', '', $html);
+                        $html = str_replace('col-sm-2 control-label', '', $html);
+                        $html = str_replace('col-sm-10', 'col-sm-offset-2 col-sm-10', $html);
 		}
 
+                if ($this->_inputType === 'hidden')
+                         // Drop the col-sm-10 class
+                        $html = str_replace('col-sm-10', '', $html);
+                
 		return $html;
 	}
 
