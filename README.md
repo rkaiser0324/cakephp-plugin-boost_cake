@@ -20,7 +20,7 @@ Ensure require is present in composer.json. This will install the plugin into Pl
 
 	{
 		"require": {
-			"slywalker/boost_cake": "*"
+			"rkaiser0324/boost_cake": "*"
 		}
 	}
 
@@ -31,6 +31,12 @@ You need to enable the plugin in your app/Config/bootstrap.php file:
 `CakePlugin::load('BoostCake');`
 
 If you are already using `CakePlugin::loadAll();`, then this is not necessary.
+
+### Baking
+
+Do the following syntax, from `/app`:
+
+`../lib/Cake/Console/cake bake --theme Bootstrap3`
 
 ## Documentation
 
