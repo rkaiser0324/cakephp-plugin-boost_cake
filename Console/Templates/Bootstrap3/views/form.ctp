@@ -25,10 +25,10 @@
 <?php
 		echo "\t<?php\n";
 		foreach ($fields as $field) {
-			if (strpos($action, 'add') !== false && $field === $primaryKey) {
-				continue;
-			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
-				echo "\t\techo \$this->Form->input('{$field}');\n";
+			if (!in_array($field, array('created', 'modified', 'updated'))) {
+                            if ($field === $primaryKey)
+                                echo "\tif (\$this->action == 'edit')\n";
+                            echo "\t\techo \$this->Form->input('{$field}');\n";
 			}
 		}
 		if (!empty($associations['hasAndBelongsToMany'])) {
@@ -49,10 +49,7 @@
 <div class="actions">
 	<h3><?php echo "<?php echo __('Actions'); ?>"; ?></h3>
 	<ul>
-
-<?php if (strpos($action, 'add') === false): ?>
-		<li><?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array(), __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
-<?php endif; ?>
+		<?php echo "<?php if (\$this->action == 'edit')\n\t echo '<li>'. \$this->Form->postLink(__('Delete'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array(), __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}'))) . '</li>'; ?>"; ?>
 		<li><?php echo "<?php echo \$this->Html->link(__('List " . $pluralHumanName . "'), array('action' => 'index')); ?>"; ?></li>
 <?php
 		$done = array();

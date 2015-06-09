@@ -82,6 +82,7 @@
 	if (!empty($compact)):
 		echo "\t\t\$this->set(compact(".join(', ', $compact)."));\n";
 	endif;
+        echo "\t\t\$this->render('edit');\n";
 ?>
 	}
 
