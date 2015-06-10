@@ -14,6 +14,10 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
+<?php
+echo "<?php \$this->Html->addCrumb('$pluralHumanName', array('controller' => '$pluralVar', 'action' => 'index'));
+\$this->Html->addCrumb(\${$singularVar}['{$modelClass}']['name'], array('controller' => '$pluralVar', 'action' => 'view', \${$singularVar}['{$modelClass}']['id'])); ?>";
+?>
 <div class="<?php echo $pluralVar; ?> view">
 <h2><?php echo "<?php echo __('{$singularHumanName}'); ?>"; ?></h2>
 	<dl class="dl-horizontal">

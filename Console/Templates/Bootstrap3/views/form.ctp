@@ -14,6 +14,16 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
+<?php
+echo "<?php 
+\$this->Html->addCrumb('$pluralHumanName', array('controller' => '$pluralVar', 'action' => 'index'));
+if ($this->action == 'edit') {
+    $this->Html->addCrumb($this->Form->value('{$modelClass}.name'), array('controller' => '$pluralVar', 'action' => 'view', $this->Form->value('id')));
+    $this->Html->addCrumb('Edit');
+} else
+    $this->Html->addCrumb('Add');
+?>";
+?>
 <div class="<?php echo $pluralVar; ?> form">
 <?php echo "<?php echo \$this->Form->create('{$modelClass}', array('class' => 'form-horizontal', 'role' => 'form', 'inputDefaults' => array(
 		'div' => 'form-group',
@@ -21,7 +31,7 @@
 		'class' => 'form-control'
 	))); ?>\n"; ?>
 	<fieldset>
-		<legend><?php printf("<?php echo __('%s %s'); ?>", Inflector::humanize($action), $singularHumanName); ?></legend>
+		<legend><?php printf("<?php echo (\$this->action == 'add' ? 'Add' : 'Edit') . '%s'); ?>", $singularHumanName); ?></legend>
 <?php
 		echo "\t<?php\n";
 		foreach ($fields as $field) {

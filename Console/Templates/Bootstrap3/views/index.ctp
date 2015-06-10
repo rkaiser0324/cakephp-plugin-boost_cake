@@ -14,6 +14,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
+<?php
+echo "<?php echo \$this->Html->addCrumb('{$pluralHumanName}'); ?>\n";
+?>
 <div class="<?php echo $pluralVar; ?> index">
 	<h2><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></h2>
 	<table class="table table-striped">
