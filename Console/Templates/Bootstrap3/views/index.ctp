@@ -15,7 +15,7 @@
  */
 ?>
 <?php
-echo "<?php echo \$this->Html->addCrumb('{$pluralHumanName}'); ?>\n";
+echo "<?php \$this->Html->addCrumb('{$pluralHumanName}'); ?>\n";
 ?>
 <div class="<?php echo $pluralVar; ?> index">
 	<h2><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></h2>

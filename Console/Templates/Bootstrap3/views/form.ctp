@@ -17,11 +17,11 @@
 <?php
 echo "<?php 
 \$this->Html->addCrumb('$pluralHumanName', array('controller' => '$pluralVar', 'action' => 'index'));
-if ($this->action == 'edit') {
-    $this->Html->addCrumb($this->Form->value('{$modelClass}.name'), array('controller' => '$pluralVar', 'action' => 'view', $this->Form->value('id')));
-    $this->Html->addCrumb('Edit');
+if (\$this->action == 'edit') {
+    \$this->Html->addCrumb(\$this->Form->value('{$modelClass}.name'), array('controller' => '$pluralVar', 'action' => 'view', \$this->Form->value('id')));
+    \$this->Html->addCrumb('Edit');
 } else
-    $this->Html->addCrumb('Add');
+    \$this->Html->addCrumb('Add');
 ?>";
 ?>
 <div class="<?php echo $pluralVar; ?> form">
@@ -31,7 +31,7 @@ if ($this->action == 'edit') {
 		'class' => 'form-control'
 	))); ?>\n"; ?>
 	<fieldset>
-		<legend><?php printf("<?php echo (\$this->action == 'add' ? 'Add' : 'Edit') . '%s'); ?>", $singularHumanName); ?></legend>
+		<legend><?php printf("<?php echo (\$this->action == 'add' ? 'Add' : 'Edit') . ' %s'; ?>", $singularHumanName); ?></legend>
 <?php
 		echo "\t<?php\n";
 		foreach ($fields as $field) {
