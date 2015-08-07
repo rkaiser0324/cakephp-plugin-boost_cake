@@ -52,6 +52,7 @@ class BoostCakeFormHelper extends FormHelper {
  * - `beforeInput` - Content to place before the input.
  * - `afterInput` - Content to place after the input.
  * - `errorClass` - Wrap input tag's error message class.
+ * - `labelColumns` - Number of Bootstrap grid columns to use for the labels, in a horizontal form
  *
  * @param string $fieldName This should be "Modelname.fieldname"
  * @param array $options Each type of input takes different options.
@@ -60,7 +61,14 @@ class BoostCakeFormHelper extends FormHelper {
  */
 	public function input($fieldName, $options = array()) {
 		$this->_fieldName = $fieldName;
-
+                              
+                // Default to a 2/10 split for horizontal forms
+                if (!isset($options['labelColumns']))
+                    $options['labelColumns'] = 2;
+                
+                $labelColumns = $options['labelColumns'];
+                $fieldColumns = 12 - $labelColumns;
+                
 		$default = array(
 			'error' => array(
 				'attributes' => array(
@@ -72,14 +80,13 @@ class BoostCakeFormHelper extends FormHelper {
 				'tag' => 'div'
 			),
 			'checkboxDiv' => 'checkbox',
-			'beforeInput' => '<div class="col-sm-10">',
+			'beforeInput' => sprintf('<div class="col-sm-%s">', $fieldColumns),
 			'afterInput' => '</div>',
 			'errorClass' => 'has-error error',
                         'label' => array(
-                            'class' => 'col-sm-2 control-label'
+                            'class' => sprintf('col-sm-%s control-label', $labelColumns)
                         )
 		);
-
 
 		if (isset($options['label']) && is_string($options['label'])) {
 			$options['label'] = array(
@@ -139,13 +146,13 @@ class BoostCakeFormHelper extends FormHelper {
 			}
                         // Fix the classes
                         $html = str_replace('form-control', '', $html);
-                        $html = str_replace('col-sm-2 control-label', '', $html);
-                        $html = str_replace('col-sm-10', 'col-sm-offset-2 col-sm-10', $html);
+                        $html = str_replace('col-sm-'.$labelColumns.' control-label', '', $html);
+                        $html = str_replace('col-sm-' . $fieldColumns, 'col-sm-offset-'.$labelColumns.' col-sm-' . $fieldColumns, $html);
 		}
 
                 if ($this->_inputType === 'hidden')
-                         // Drop the col-sm-10 class
-                        $html = str_replace('col-sm-10', '', $html);
+                         // Drop the col-sm-$fieldColumns class
+                        $html = str_replace('col-sm-' . $fieldColumns, '', $html);
                 
 		return $html;
 	}
