@@ -72,7 +72,7 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 
 	public function prev($title = null, $options = array(), $disabledTitle = null, $disabledOptions = array()) {
 		$default = array(
-			'title' => '<',
+			'title' => '&#8249;',
 			'tag' => 'li',
 			'model' => $this->defaultModel(),
 			'class' => null,
@@ -99,7 +99,7 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 
 	public function next($title = null, $options = array(), $disabledTitle = null, $disabledOptions = array()) {
 		$default = array(
-			'title' => '>',
+			'title' => '&#8250;',
 			'tag' => 'li',
 			'model' => $this->defaultModel(),
 			'class' => null,
@@ -135,17 +135,15 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 			'separator' => false,
 			'first' => null,
 			'last' => null,
-			'ellipsis' => '<li class="disabled"><a href="#">…</a></li>',
 			'currentClass' => 'current'
 		);
 		$options += $defaults;
-		$return = parent::numbers($options);
-		return preg_replace('@<li class="current">(.*?)</li>@', '<li class="current disabled"><a href="#">\1</a></li>', $return);
+		return parent::numbers($options);
 	}
 
 	public function first($title = null, $options = array()) {
 		$default = array(
-			'title' => '<<',
+			'title' => '&#171;',
 			'tag' => 'li',
 			'after' => null,
 			'model' => $this->defaultModel(),
@@ -168,7 +166,7 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 
 	public function last($title = null, $options = array()) {
 		$default = array(
-			'title' => '>>',
+			'title' => '&#187;',
 			'tag' => 'li',
 			'after' => null,
 			'model' => $this->defaultModel(),
