@@ -12,7 +12,8 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 	public function pagination($options = array()) {
 		$default = array(
 			'div' => false,
-			'ul' => ''
+			'ul' => '',
+                        'escape' => false
 		);
 
 		$model = (empty($options['model'])) ? $this->defaultModel() : $options['model'];
@@ -50,7 +51,8 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 		if ($div !== false) {
 			$out = $this->Html->div($div, $out);
 		}
-		return $out;
+                // Fix upstream bug where disabled paging links are still escaped, even though escape=false.
+		return preg_replace('/&amp;#82(49|50);/', '&#82$1', $out);
 	}
 
 /**
@@ -188,7 +190,8 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 			'currentClass' => 'current'
 		);
 		$options += $defaults;
-		return parent::numbers($options);
+                // Fix upstream bug where current button is not wrapped in a <span>
+                return preg_replace('@<li class="current">(.*?)</li>@', '<li class="current"><span>$1</span></li>', parent::numbers($options));
 	}
 
 /**
