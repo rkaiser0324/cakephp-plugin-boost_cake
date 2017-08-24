@@ -18,7 +18,7 @@
 echo "<?php 
 \$this->Html->addCrumb('$pluralHumanName', array('controller' => '$pluralVar', 'action' => 'index'));
 if (\$this->action == 'edit') {
-    \$this->Html->addCrumb(\$this->Form->value('{$modelClass}.name'), array('controller' => '$pluralVar', 'action' => 'view', \$this->Form->value('id')));
+    \$this->Html->addCrumb(\$this->Form->value('{$modelClass}.name'), array('controller' => '$pluralVar', 'action' => 'view', \$this->Form->value('{$modelClass}.id')));
     \$this->Html->addCrumb('Edit');
 } else
     \$this->Html->addCrumb('Add');
