@@ -119,6 +119,9 @@ class BoostCakeFormHelper extends FormHelper {
 		if (isset($options['errorClass'])) {
 			unset($options['errorClass']);
 		}
+                if (isset($options['labelColumns'])) {
+			unset($options['labelColumns']);
+		}
 
 		$inputDefaults = $this->_inputDefaults;
 		$this->_inputDefaults = array();
