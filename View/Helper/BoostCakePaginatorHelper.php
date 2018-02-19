@@ -216,15 +216,13 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 			$title = $options['title'];
 		}
 		unset($options['title']);
-                
-                $tag = $options['tag'];
-                unset($options['tag']);
 
-		return (parent::first($title, $options)) ? (parent::first($title, $options)) : $this->Html->tag(
-			$tag,
+                $html = (parent::first($title, $options)) ? (parent::first($title, $options)) : $this->Html->tag(
+			$options['tag'],
 			$this->link($title, array(), $options),
 			array('class' => 'disabled')
 		);
+		return preg_replace('@ tag="(.+)"@', '', $html);
 	}
 
 /**
@@ -249,15 +247,13 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 			$title = $options['title'];
 		}
 		unset($options['title']);
-                
-                $tag = $options['tag'];
-                unset($options['tag']);
 
-		return (parent::last($title, $options)) ? (parent::last($title, $options)) : $this->Html->tag(
-			$tag,
+		$html = (parent::last($title, $options)) ? (parent::last($title, $options)) : $this->Html->tag(
+			$options['tag'],
 			$this->link($title, array(), $options),
 			array('class' => 'disabled')
 		);
+                return preg_replace('@ tag="(.+)"@', '', $html);
 	}
 
 }
