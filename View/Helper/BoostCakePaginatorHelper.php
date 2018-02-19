@@ -216,9 +216,12 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 			$title = $options['title'];
 		}
 		unset($options['title']);
+                
+                $tag = $options['tag'];
+                unset($options['tag']);
 
 		return (parent::first($title, $options)) ? (parent::first($title, $options)) : $this->Html->tag(
-			$options['tag'],
+			$tag,
 			$this->link($title, array(), $options),
 			array('class' => 'disabled')
 		);
@@ -246,11 +249,12 @@ class BoostCakePaginatorHelper extends PaginatorHelper {
 			$title = $options['title'];
 		}
 		unset($options['title']);
-
-		$params = (array)$this->params($options['model']);
+                
+                $tag = $options['tag'];
+                unset($options['tag']);
 
 		return (parent::last($title, $options)) ? (parent::last($title, $options)) : $this->Html->tag(
-			$options['tag'],
+			$tag,
 			$this->link($title, array(), $options),
 			array('class' => 'disabled')
 		);
